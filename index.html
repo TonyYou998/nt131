@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>hello mqtt</h1>
+    <button id="turn-on">turn on</button>
+    <button id="turn-off">turn off</button>
+</body>
+<script>
+    const turnOn=document.getElementById("turn-on");
+    const turnOff=document.getElementById("turn-off");
+    turnOn.addEventListener('click',()=>{
+        fetch('/turn-on', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: 'turn-on' })
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    });
+    turnOff.addEventListener('click',()=>{
+        fetch('/turn-off', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ message: 'turn-off' })
+      })
+      .then(response => {
+        console.log(response);
+      })
+      .catch(error => {
+        console.error(error);
+      });
+    });
+</script>
+</html>
